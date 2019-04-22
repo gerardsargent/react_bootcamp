@@ -2,7 +2,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <GetNum />
+        <Hello />
         <GetNum />
       </div>
     )
