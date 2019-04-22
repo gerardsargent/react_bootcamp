@@ -1,10 +1,17 @@
 class Hello extends React.Component {
-	render() {
-		const num = getNum()
+	static defaultProps = {
+		from: 'Anonymous',
+		bangs: 1
+	}
+
+	render(props) {
+		const { to, from, bangs, img } = this.props
+		let exclamations = "!".repeat(bangs)
 
 		return (
-			<div>
-				<h1>Hello!</h1>
+			<div className="Hello">
+				<h1>Hello {to} from {from} {`${exclamations}`}</h1>
+				<img src={img} alt="Hello" style={{maxWidth: '500px'}}/>
 			</div>
 		);
 	}
