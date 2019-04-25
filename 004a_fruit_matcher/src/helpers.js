@@ -4,10 +4,10 @@ function choice (items) {
 }
 
 function remove (items, item) {
-  // foundItem = items.find(i => i === item)
   const foundItemIndex = items.findIndex(i => i === item)
-  const splicedArray = items.splice(foundItemIndex)
-  return splicedArray
+  items.splice(foundItemIndex, 1)
+  const newArray = items
+  return newArray.length
 }
 
 export { choice, remove }

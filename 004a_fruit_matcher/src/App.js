@@ -11,7 +11,7 @@ function App() {
       <p>I'd like one {randomFruit}, please</p>
       <p>Here you go: {randomFruit}</p>
       <p>Delicious! May I have another?</p>
-      <p>I'm sorry, we're all out. We have {fruitsLeft.length} left.</p>
+      <p>I'm sorry, we're all out. We have {fruitsLeft} left.</p>
     </div>
   )
 }
