@@ -1,0 +1,26 @@
+.Card {
+  display: inline-block;
+  margin: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 7.76px;
+}
+
+.Card__img-container {
+  padding: 20px 30px;
+  background-color: #dadada;
+}
+
+.Card__name {
+  font-weight: 600;
+  margin: 20px 0;
+  font-size: 2em;
+}
+
+.Card__details {
+  font-size: 0.8em;
+}
+
+.Card__details--span {
+  margin: 5px 0;
+}
