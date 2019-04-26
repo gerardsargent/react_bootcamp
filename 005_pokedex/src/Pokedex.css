@@ -1,0 +1,12 @@
+.Pokedex {
+  font-family: sans-serif;
+}
+
+.Pokedex__header {
+  text-align: center;
+  color: #333333;
+}
+
+.Pokedex__header--main {
+  font-size: 3.1em;
+}
