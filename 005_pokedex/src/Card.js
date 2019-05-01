@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import Pokemon from './Pokemon'
 import './Card.css'
+import buildImageArray from './helpers'
 
 class Card extends Component {
   render () {
+    const images = buildImageArray(Pokemon)
     return (
       <div>
-      {Pokemon.map(poke =>
-        <div className="Card">
-          <div className="Card__img-container">
-            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" alt=""/>
-          </div>
+      {Pokemon.map((poke, index) =>
+        <div className="Card" key={index}>
+          {images.map((image, index) =>
+            <div className="Card__img-container" key={index}>
+              {console.log('image: ',image)}
+              <img src={image} alt={poke.name}/>
+            </div>
+          )}
           <div className="Card__name">
             {poke.name}
           </div>
