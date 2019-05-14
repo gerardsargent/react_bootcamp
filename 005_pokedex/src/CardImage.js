@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 
 class CardImage extends Component {
-  constructor ( props ) {
-    super(props)
-  }
-
   render () {
     const { imageUrl, poke } = this.props
     return (
