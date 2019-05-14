@@ -1,5 +1,4 @@
 import React from 'react'
-import Card from './Card'
 import Pokegame from './Pokegame'
 import './global.css'
 import './Pokedex.css'

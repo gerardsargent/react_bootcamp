@@ -9,20 +9,26 @@ function formatNumber(num) {
 }
 
 function buildImageArray(array) {
-  let image_url_array = []
+  let imageUrlArray = []
+  const imageIds = array.map(pokemon => pokemon.id)
 
-  for(let i = 1; i <= array.length * 2; i += 2) {
-    const formattedNumber = formatNumber(i)
-    image_url_array.push(`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formattedNumber}.png`)
+  for(let i = 1; i <= imageIds.length; i ++) {
+    imageUrlArray.push(`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formatNumber(imageIds[i])}.png`)
   }
-  console.log('image_url_array', image_url_array)
-  return image_url_array
+
+  const newArray = array.map((pokemon, index) => {
+    return { ...pokemon, imgUrl: imageUrlArray[index] }
+  })
+
+  console.log(newArray)
+
+  return imageUrlArray
 }
 
 function dealHands(array) {
-  const copiedArray = [...array]
+  const originalArray = [...array]
   // shuffle array
-  const firstHand = copiedArray.sort(() => 0.5 - Math.random())
+  const firstHand = originalArray.sort(() => 0.5 - Math.random())
   // Get sub-array of first n elements after shuffle
   const secondHand = firstHand.splice(0, 4)
 
