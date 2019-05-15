@@ -3,12 +3,12 @@ import './Card.css'
 
 class Card extends Component {
   render (props) {
-    const { poke, Pokeindex, imageUrl } = this.props
+    const { poke, Pokeindex } = this.props
 
     return (
       <div className="Card" key={Pokeindex}>
         <div className="Card__img-container">
-          <img src={imageUrl} alt={poke.name}/>
+          <img src={poke.imgUrl} alt={poke.name}/>
         </div>
         <div className="Card__name">
           {poke.name}

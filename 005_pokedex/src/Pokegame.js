@@ -6,8 +6,8 @@ import { buildImageArray, dealHands, showWinner } from './helpers'
 
 class Pokegame extends Component {
   render () {
-    const images = buildImageArray(Pokemon)
-    const hands = dealHands(Pokemon)
+    const arrayWithImgUrl = buildImageArray(Pokemon)
+    const hands = dealHands(arrayWithImgUrl)
 
     return (
       <div>
@@ -18,7 +18,6 @@ class Pokegame extends Component {
             <Card
               poke={poke}
               pokeIndex={Pokeindex}
-              imageUrl={images[Pokeindex]}
             />
           )}
         </div>
@@ -29,7 +28,6 @@ class Pokegame extends Component {
             <Card
               poke={poke}
               pokeIndex={Pokeindex}
-              imageUrl={images[Pokeindex]}
             />
           )}
         </div>

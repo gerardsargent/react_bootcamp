@@ -9,20 +9,20 @@ function formatNumber(num) {
 }
 
 function buildImageArray(array) {
-  let imageUrlArray = []
+  let arrayWithImageUrl = []
   const imageIds = array.map(pokemon => pokemon.id)
 
-  for(let i = 1; i <= imageIds.length; i ++) {
-    imageUrlArray.push(`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formatNumber(imageIds[i])}.png`)
+  for(let i = 0; i <= imageIds.length; i ++) {
+    arrayWithImageUrl.push(`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formatNumber(imageIds[i])}.png`)
   }
 
   const newArray = array.map((pokemon, index) => {
-    return { ...pokemon, imgUrl: imageUrlArray[index] }
+    return { ...pokemon, imgUrl: arrayWithImageUrl[index] }
   })
 
-  console.log(newArray)
+  console.log('newArray: ', newArray)
 
-  return imageUrlArray
+  return newArray
 }
 
 function dealHands(array) {
