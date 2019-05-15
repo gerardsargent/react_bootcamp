@@ -20,8 +20,6 @@ function buildImageArray(array) {
     return { ...pokemon, imgUrl: arrayWithImageUrl[index] }
   })
 
-  console.log('newArray: ', newArray)
-
   return newArray
 }
 
