@@ -38,6 +38,7 @@ export default class RollDice extends Component {
     return (
       <div className="RollDice__main-container">
         <h1>Roll Dice</h1>
+        <h3>Score 7 to win</h3>
         <div className="RollDice__dice-container">
           <Dice
             num={rand1}
@@ -49,13 +50,13 @@ export default class RollDice extends Component {
           />
         </div>
         {rand1 + rand2 === 7 ?
-          'You win!' :
+          <h2>You win!</h2> :
           <button
             className="RollDice__button"
             onClick={rollDice}
             disabled={shaking}
           >
-            Roll
+            {shaking ? 'Rolling' : 'Roll'}
           </button>}
       </div>
     )
