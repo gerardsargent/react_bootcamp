@@ -1,0 +1,36 @@
+.RollDice__dice-container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  align-items: flex-start;
+}
+
+.RollDice__main-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.RollDice__button {
+  background-color: #f3ff4f;
+  color: #ff7300;
+  border: 1px solid #ff7300;
+  padding: 10px 20px;
+  font-size: 1.5em;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.RollDice__button:disabled {
+  background-color: #f8fcbe;
+  color: #ffaf6d;
+  border: 1px solid #ffaf6d;
+  cursor: not-allowed;
+}
+
+.RollDice__button:focus {
+  outline: 0;
+}

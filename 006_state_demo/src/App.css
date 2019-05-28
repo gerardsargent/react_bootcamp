@@ -1,3 +1,11 @@
+.RollDice__button {
+  padding: 10px 20px;
+  background-color: #fff895;
+  color: #ff7300;
+  font-size: 2em;
+  border: 1px solid #ff7300;
+}
+
 .App {
   text-align: center;
 }
