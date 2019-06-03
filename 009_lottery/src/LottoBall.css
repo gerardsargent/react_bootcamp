@@ -1,0 +1,13 @@
+.LottoBall__number {
+  text-align: center;
+  display: inline-block;
+  width: 3em;
+  height: 2.25em;
+  padding-top: 0.75em;
+  background-color: #450074;
+  color: #fff;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
