@@ -11,8 +11,8 @@ import img6 from "./6.jpg";
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
   static defaultProps = {
-    maxWrong: 6,
-    images: [img0, img1, img2, img3, img4, img5, img6]
+    images: [img0, img1, img2, img3, img4, img5, img6],
+    words: ['Chewbacca', 'Skywalker', 'Palpatine', 'Lightsabre']
   };
 
   constructor(props) {
@@ -21,8 +21,10 @@ class Hangman extends Component {
       nWrong: 0,
       wrongGuesses: new Set(),
       guessed: new Set(),
-      answer: "seriously",
-      gameOver: false
+      // answer: this.props.words[Math.floor(Math.random * this.props.words.length)],
+      answer: 'Chewbacca',
+      win: false,
+      lose: false
     };
     this.handleGuess = this.handleGuess.bind(this);
   }
@@ -36,6 +38,7 @@ class Hangman extends Component {
   */
   guessedWord() {
     const { gameOver, answer, guessed } = this.state
+
     if (gameOver) {
       return `The word was: ${answer}`
     } else {
@@ -51,7 +54,7 @@ class Hangman extends Component {
   */
   handleGuess(evt) {
     const { guessed, answer, nWrong } = this.state
-    console.log('guessed = ', guessed)
+console.log('guessed = ', guessed)
     const ltr = evt.target.value;
 
     this.setState(prevState => ({
@@ -68,7 +71,7 @@ class Hangman extends Component {
     const { checkGuessesAgainstAnswer } = this
 
     if (gameOver) {
-      ''
+      return ''
     } else {
       return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
         <button
@@ -80,21 +83,26 @@ class Hangman extends Component {
           {ltr}
         </button>
       ));
-      }
+    }
   }
 
   /** render: render game */
   render() {
-    const { wrongGuesses, gameOver, guessed, answer } = this.state
+    const { wrongGuesses, gameOver, guessed, answer, nWrong } = this.state
+    const { images } = this.props
+    const { checkGuessesAgainstAnswer, guessedWord, generateButtons } = this
 
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
-        {this.checkGuessesAgainstAnswer(guessed, answer) && <p>Congratulations - you win!</p>}
-        {gameOver ? 'Game Over!' : <img src={this.props.images[this.state.nWrong]} />}
+        {/* {checkGuessesAgainstAnswer(guessed, answer) && <p>Congratulations - you win!</p>} */}
+        {gameOver ? 'Game Over!' : <img
+          src={ images[nWrong] }
+          alt={ `${wrongGuesses.length || 'No' } wrong ${ wrongGuesses.length === 1 ? 'guess' : 'guesses' } so far` }
+        />}
         {wrongGuesses.length >= 1 && <p className="Hangman-wrong_guesses">Wrong guesses: { wrongGuesses.length }</p>}
-        <p className='Hangman-word'>{this.guessedWord()}</p>
-        <p className='Hangman-btns'>{this.generateButtons()}</p>
+        <p className='Hangman-word'>{ guessedWord() }</p>
+        <p className='Hangman-btns'>{ generateButtons() }</p>
       </div>
     );
   }
