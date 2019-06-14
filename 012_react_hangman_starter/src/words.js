@@ -1614,4 +1614,4 @@ function randomWord() {
   return ENGLISH_WORDS[Math.floor(Math.random() * ENGLISH_WORDS.length)];
 }
 
-export { randomWord };
+export { ENGLISH_WORDS, randomWord };
