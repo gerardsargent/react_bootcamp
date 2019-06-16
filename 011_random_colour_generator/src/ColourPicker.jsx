@@ -44,8 +44,6 @@ export default class ColourPicker extends Component {
   }
 
   changeColour (colour, index) {
-    console.log('colour: ', colour)
-    console.log('index: ', index)
     const { currentBackgroundColourArray } = this.state
     const { generateColour, changeColour } = this
     const coloursArray = [...currentBackgroundColourArray]
