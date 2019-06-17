@@ -8,4 +8,5 @@
 
 .Cell-lit {
   background-color: rgb(191, 253, 255);
+  transition: 0.5s
 }

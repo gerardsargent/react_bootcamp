@@ -47,6 +47,7 @@ export default class Board extends Component {
 
     this.createBoard = this.createBoard.bind(this)
     this.flipCellsAroundMe = this.flipCellsAroundMe.bind(this)
+    this.resetGame = this.resetGame.bind(this)
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -71,45 +72,84 @@ export default class Board extends Component {
 
   /** handle changing a cell: update board & determine if winner */
 
-  flipCellsAroundMe (coord) {
+  flipCellsAroundMe (x, y) {
     let {ncols, nrows} = this.props;
     let board = this.state.board;
-    let [y, x] = coord.split("-").map(Number);
 
+    flipCell(x, y)
 
-    function flipCell(y, x) {
+    function flipCell(x, y) {
       // if this coord is actually on board, flip it
 
       if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
-        board[y][x] = !board[y][x];
+        board[x][y] = !board[x][y];
+      }
+
+      // flip this cell and the cells around it
+      if (x + 1 >= 0 && x + 1 < nrows ) {
+        board[x + 1][y] = !board[x + 1][y]
+      }
+      if ( x - 1 >= 0 && x - 1 < nrows ) {
+        board[x - 1][y] = !board[x - 1][y]
+      }
+      if (y + 1 >= 0 && y + 1 < ncols ) {
+        board[x][y + 1] = !board[x][y + 1]
+      }
+      if (y - 1 >= 0 && y - 1 < ncols ) {
+        board[x][y - 1] = !board[x][y - 1]
       }
     }
 
-    // TODO: flip this cell and the cells around it
-
     // win when every cell is turned off
-    // TODO: determine is the game has been won
+    const allCells = board.flat()
 
-    // this.setState({board, hasWon});
+    function checkAllValuesFalse(currentValue) {
+      return currentValue === false
+    }
+
+    if (allCells.every(checkAllValuesFalse)) {
+      this.setState({
+        hasWon: true
+      })
+    }
+
+    this.setState({ board });
+  }
+
+  resetGame () {
+    this.setState({
+      board: this.createBoard(),
+      hasWon: false
+    })
   }
 
 
   /** Render game board or winning message. */
 
   render() {
-    const { board } = this.state
+    const { board, hasWon } = this.state
+    const { flipCellsAroundMe, resetGame } = this
 
     return (
-      <div classname="Board">
-        { board.map(row => {
+      <div className="Board">
+        { hasWon && (
+          <div>
+            <h2>You win!</h2>
+            <button onClick={ resetGame }>Play again?</button>
+          </div>
+        ) }
+        { !hasWon && board.map((row, rowIndex) => {
+          // console.log({rowIndex})
           return (
-            <div className="Board__row">
-              { row.map(cell => {
+            <div className="Board__row" key={ rowIndex }>
+              { row.map((cell, cellIndex) => {
                 return (
                   <Cell
+                    key={ cellIndex }
                     isLit={ cell }
-                    x={ board[row] }
-                    y={ row[cell] }
+                    x={rowIndex}
+                    y={cellIndex}
+                    flipCellsAroundMe={flipCellsAroundMe}
                   />
                 )
               })}

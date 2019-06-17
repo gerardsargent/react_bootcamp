@@ -1,11 +1,11 @@
 .Board {
-  -webkit-box-shadow: 0 0 10px 5px #FFDBFD;
-  box-shadow: 0 0 10px 5px #FFDBFD;
+  -webkit-box-shadow: 0 0 20px 10px rgb(242, 255, 255);
+  box-shadow: 0 0 20px 10px rgb(242, 255, 255);
+  margin: 0 auto;
   width: 500px
 }
 
 .Board__row {
-  margin: 0 auto;
   width: 500px;
   flex-direction: row;
   flex-wrap: wrap;

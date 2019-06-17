@@ -22,15 +22,20 @@ class Cell extends Component {
   }
 
   handleClick(evt) {
+    const { flipCellsAroundMe, x, y } = this.props
+
     // call up to the board to flip cells around this cell
-    this.props.flipCellsAroundMe();
+    flipCellsAroundMe(x, y);
   }
 
   render() {
-    let classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
+    const { isLit } = this.props
+    const { handleClick } = this
+
+    let classes = "Cell" + (isLit ? " Cell-lit" : "");
 
     return (
-        <div className={classes} onClick={this.handleClick}></div>
+        <div className={ classes } onClick={ handleClick }></div>
     )
   }
 }
