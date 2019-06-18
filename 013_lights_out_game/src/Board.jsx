@@ -131,31 +131,35 @@ export default class Board extends Component {
     const { flipCellsAroundMe, resetGame } = this
 
     return (
-      <div className="Board">
-        { hasWon && (
-          <div>
-            <h2>You win!</h2>
-            <button onClick={ resetGame }>Play again?</button>
-          </div>
-        ) }
-        { !hasWon && board.map((row, rowIndex) => {
-          // console.log({rowIndex})
-          return (
-            <div className="Board__row" key={ rowIndex }>
-              { row.map((cell, cellIndex) => {
-                return (
-                  <Cell
-                    key={ cellIndex }
-                    isLit={ cell }
-                    x={rowIndex}
-                    y={cellIndex}
-                    flipCellsAroundMe={flipCellsAroundMe}
-                  />
-                )
-              })}
+      <div>
+        <h1 className="Board__header neon-orange">Lights</h1>
+        <h1 className="Board__header neon-blue">Out</h1>
+        <div className="Board">
+          { hasWon && (
+            <div>
+              <h2>You win!</h2>
+              <button onClick={ resetGame }>Play again?</button>
             </div>
-          )
-        }) }
+          ) }
+          { !hasWon && board.map((row, rowIndex) => {
+            // console.log({rowIndex})
+            return (
+              <div className="Board__row" key={ rowIndex }>
+                { row.map((cell, cellIndex) => {
+                  return (
+                    <Cell
+                      key={ cellIndex }
+                      isLit={ cell }
+                      x={rowIndex}
+                      y={cellIndex}
+                      flipCellsAroundMe={flipCellsAroundMe}
+                    />
+                  )
+                })}
+              </div>
+            )
+          }) }
+        </div>
       </div>
     )
 
