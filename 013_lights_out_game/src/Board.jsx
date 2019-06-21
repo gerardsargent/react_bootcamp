@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-// import uuid from 'uuid'
+import uuid from 'uuid/v4'
 import Cell from "./Cell"
 import './Board.css'
 
@@ -144,11 +144,11 @@ export default class Board extends Component {
           { !hasWon && board.map((row, rowIndex) => {
             // console.log({rowIndex})
             return (
-              <div className="Board__row" key={ rowIndex }>
+              <div className="Board__row" key={ uuid() }>
                 { row.map((cell, cellIndex) => {
                   return (
                     <Cell
-                      key={ cellIndex }
+                      key={ uuid() }
                       isLit={ cell }
                       x={rowIndex}
                       y={cellIndex}
