@@ -11,11 +11,31 @@ export default class NewBoxForm extends Component {
     }
   }
 
+  handleChange = (evt) => {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    const { addBox } = this.props
+
+    addBox(this.state)
+    this.setState({
+      width: "",
+      height: "",
+      color: "",
+    })
+  }
+
   render() {
     const { width, height, color } = this.state
+    const { handleChange, handleSubmit } = this
 
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="width">Width: </label>
           <input
@@ -24,7 +44,8 @@ export default class NewBoxForm extends Component {
             name="width"
             id="width"
             placeholder="How wide (px) will your box be?"
-          />
+            onChange={handleChange}
+            />
         </div>
         <div>
           <label htmlFor="height">Height: </label>
@@ -34,7 +55,8 @@ export default class NewBoxForm extends Component {
             name="height"
             id="height"
             placeholder="How tall (px) will your box be?"
-          />
+            onChange={handleChange}
+            />
         </div>
         <div>
           <label htmlFor="color">Colour: </label>
@@ -44,7 +66,11 @@ export default class NewBoxForm extends Component {
             name="color"
             id="color"
             placeholder="What colour will your box be?"
+            onChange={handleChange}
           />
+        </div>
+        <div>
+          <button>Submit!</button>
         </div>
       </form>
     )

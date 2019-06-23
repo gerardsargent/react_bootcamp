@@ -1,0 +1,12 @@
+---
+extends:
+- airbnb-standard
+rules:
+  semi:
+  - 2
+  - never
+globals:
+  $: true
+  document: true
+  window: true
+  CustomEvent: true
