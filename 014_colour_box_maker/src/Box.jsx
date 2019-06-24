@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Box(width, height, color) {
-  const divStyle = {
-    color: color,
-    width: `${width}px`,
-    height: `${height}px`,
+class Box extends Component {
+  render() {
+    const { height, width, color } = this.props
+
+    const handleClick = () => {
+      const { boxIndex, removeBox } = this.props
+
+      removeBox(boxIndex)
+    }
+
+    return (
+      <div>
+        <div style={{
+          height: `${height}px`,
+          width: `${width}px`,
+          backgroundColor: `${color}`,
+        }}>
+        </div>
+        <button onClick={handleClick}>Remove</button>
+      </div>
+    )
   }
-
-  return (
-    <div style={ divStyle }>
-    </div>
-  )
 }
+
+export default Box
+

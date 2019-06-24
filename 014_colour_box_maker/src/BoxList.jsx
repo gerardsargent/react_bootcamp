@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import uuid from 'uuid/v4'
 import NewBoxForm from './NewBoxForm'
 import Box from './Box'
-import uuid from 'uuid/v4'
+import './BoxList.css'
 
 export default class BoxList extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class BoxList extends Component {
     }
 
     this.addBox = this.addBox.bind(this)
+    this.removeBox = this.removeBox.bind(this)
   }
 
   addBox (box) {
@@ -20,9 +22,19 @@ export default class BoxList extends Component {
     }))
   }
 
+  removeBox (boxIndex) {
+    const { boxes } = this.state
+
+    const filteredBoxes = boxes.filter(box => box !== boxes[boxIndex])
+
+    this.setState({
+      boxes: filteredBoxes
+    })
+  }
+
   render() {
     const { boxes } = this.state
-    const { addBox } = this
+    const { addBox, removeBox } = this
 
     return (
       <div>
@@ -30,14 +42,16 @@ export default class BoxList extends Component {
         <NewBoxForm
           addBox={ addBox }
         />
-        <div className="Box__container">
-          { boxes.map(box => {
+        <div className="BoxList__container">
+          { boxes.map((box, boxIndex) => {
             return (
               <Box
                 key={ uuid() }
+                boxIndex={ boxIndex }
                 width={ box.width }
                 height={ box.height }
                 color={ box.color }
+                removeBox= { removeBox }
               />
             )
           }) }

@@ -1,0 +1,5 @@
+.BoxList__container {
+  display: flex;
+  width: 1200px;
+  margin: 10px auto;
+}
