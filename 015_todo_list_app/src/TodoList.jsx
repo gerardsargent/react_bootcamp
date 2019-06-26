@@ -20,11 +20,22 @@ export default class TodoList extends Component {
       ]
     }
 
-    this.editTodoFormChange = this.editTodoFormChange.bind(this)
+    this.deleteTodo = this.deleteTodo.bind(this)
+    this.editTodoFormChangeHandler = this.editTodoFormChangeHandler.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.setEditing = this.setEditing.bind(this)
   }
 
-  editTodoFormChange (id, event) {
+  deleteTodo (id) {
+    const { todos } = this.state
+    const newTodos = todos.filter(todo => todo.id !== id )
+
+    this.setState({
+      newTodos
+    })
+  }
+
+  editTodoFormChangeHandler (id, event) {
     const { todos } = this.state
     const oldTodos = [...todos]
     const currentTodo = oldTodos.find(todo => todo.id === id)
@@ -34,6 +45,10 @@ export default class TodoList extends Component {
     this.setState({
       newTodos
     })
+  }
+
+  handleSubmit (event) {
+
   }
 
   setEditing (id) {
@@ -50,10 +65,18 @@ export default class TodoList extends Component {
 
   render() {
     const { todos } = this.state
-    const { setEditing, editTodoFormChange } = this
+    const {
+      setEditing,
+      editTodoFormChangeHandler,
+      deleteTodo,
+      handleSubmit
+    } = this
 
     return (
       <div>
+        <h1>Todo List!</h1>
+        <h3>A simple React Todo List app.</h3>
+        <hr />
         <ul className="TodoList__unordered-list">
           {todos.map(todo => {
             if (todo.editing) {
@@ -61,7 +84,7 @@ export default class TodoList extends Component {
                 <form key={todo.id}>
                   <input
                     value={todo.description}
-                    onChange={(event) => editTodoFormChange(todo.id, event)}
+                    onChange={(event) => editTodoFormChangeHandler(todo.id, event)}
                     name="description"
                   />
                 </form>
@@ -71,11 +94,19 @@ export default class TodoList extends Component {
               <li key={todo.id}>
                 { todo.description }
                 <button onClick={() => setEditing(todo.id)}>Edit?</button>
+                <button onClick={() => deleteTodo(todo.id)}>X</button>
               </li>
               )
             }
           })}
         </ul>
+        <div>
+          New Todo
+          <form onSubmit={handleSubmit}>
+            <input placeholder="New Todo"/>
+            <button>Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
