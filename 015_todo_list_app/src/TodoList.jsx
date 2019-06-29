@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
-import uuid from 'uuid/v4'
+import NewTodoForm from './NewTodoForm'
+import './TodoList.css'
 
 export default class TodoList extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      todos: [
-        {
-          description: "Wash the grass",
-          editing: false,
-          id: uuid()
-        },
-        {
-          description: "Dust the dog",
-          editing: false,
-          id: uuid()
-        }
-      ]
+      todos: []
     }
 
     this.deleteTodo = this.deleteTodo.bind(this)
     this.editTodoFormChangeHandler = this.editTodoFormChangeHandler.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.setEditing = this.setEditing.bind(this)
+    this.submitEdit = this.submitEdit.bind(this)
+    this.addTodo = this.addTodo.bind(this)
+    this.crossTodoItem = this.crossTodoItem.bind(this)
+  }
+
+  crossTodoItem (id) {
+    const { todos } = this.state
+    const oldTodos = [...todos]
+    const currentTodo = oldTodos.find(todo => todo.id === id)
+    const currentTodoIndex = oldTodos.findIndex(todo => todo.id === id)
+
+    currentTodo.crossedOff = !currentTodo.crossedOff
+
+    const newTodos = [...oldTodos]
+    newTodos[currentTodoIndex] = currentTodo
+
+    this.setState({ todos: newTodos })
   }
 
   deleteTodo (id) {
@@ -31,7 +37,7 @@ export default class TodoList extends Component {
     const newTodos = todos.filter(todo => todo.id !== id )
 
     this.setState({
-      newTodos
+      todos: newTodos
     })
   }
 
@@ -47,36 +53,57 @@ export default class TodoList extends Component {
     })
   }
 
-  handleSubmit (event) {
-
-  }
 
   setEditing (id) {
     const { todos } = this.state
     const oldTodos = [...todos]
 
     const currentTodo = oldTodos.find(todo => todo.id === id)
+    const currentTodoIndex = oldTodos.findIndex(todo => todo.id === id)
     currentTodo.editing = true
 
-    const newTodos = [...oldTodos, currentTodo]
+    const newTodos = [...oldTodos]
+    newTodos[currentTodoIndex] = currentTodo
 
-    this.setState({ newTodos })
+    this.setState({ todos: newTodos })
+  }
+
+  submitEdit (id) {
+    const { todos } = this.state
+    const oldTodos = [...todos]
+
+    const currentTodo = oldTodos.find(todo => todo.id === id)
+    const currentTodoIndex = oldTodos.findIndex(todo => todo.id === id)
+    currentTodo.editing = false
+
+    const newTodos = [...oldTodos]
+    newTodos[currentTodoIndex] = currentTodo
+
+    this.setState({ todos: newTodos })
+  }
+
+  addTodo (todo) {
+    this.setState((prevState) => ({
+      todos: [...prevState.todos, todo]
+    }))
   }
 
   render() {
     const { todos } = this.state
     const {
       setEditing,
+      crossTodoItem,
       editTodoFormChangeHandler,
       deleteTodo,
-      handleSubmit
+      submitEdit,
+      addTodo
     } = this
 
     return (
-      <div>
+      <div class="TodoList__container">
         <h1>Todo List!</h1>
         <h3>A simple React Todo List app.</h3>
-        <hr />
+        {todos.length > 0 && <hr />}
         <ul className="TodoList__unordered-list">
           {todos.map(todo => {
             if (todo.editing) {
@@ -87,26 +114,27 @@ export default class TodoList extends Component {
                     onChange={(event) => editTodoFormChangeHandler(todo.id, event)}
                     name="description"
                   />
+                  <button onClick={() => submitEdit(todo.id)}>Submit Edit</button>
                 </form>
               )}
             else {
               return (
-              <li key={todo.id}>
-                { todo.description }
-                <button onClick={() => setEditing(todo.id)}>Edit?</button>
+              <li
+                key={todo.id}
+                onClick={() => crossTodoItem(todo.id)}
+              >
+                <span class={`TodoList__item--description ${todo.crossedOff && "TodoList__item--crossed-off"}`}>{ todo.description }</span>
+                <button class="TodoList__item--button" onClick={() => setEditing(todo.id)}>Edit?</button>
                 <button onClick={() => deleteTodo(todo.id)}>X</button>
               </li>
               )
             }
           })}
         </ul>
-        <div>
-          New Todo
-          <form onSubmit={handleSubmit}>
-            <input placeholder="New Todo"/>
-            <button>Submit</button>
-          </form>
-        </div>
+        <hr />
+        <NewTodoForm
+          addTodo={addTodo}
+        />
       </div>
     )
   }

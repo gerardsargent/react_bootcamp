@@ -1,0 +1,25 @@
+.TodoList__container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.TodoList__item--description {
+  padding: 5px 0;
+  display: flex;
+  width: 100%;
+}
+
+.TodoList__item--button {
+  margin: 0 5px;
+}
+
+.TodoList__item--crossed-off {
+  color: grey;
+  text-decoration: line-through;
+  transition: 1s linear all;
+}
+
+.TodoList__unordered-list {
+  text-align: left;
+  list-style: none;
+}
