@@ -1,0 +1,16 @@
+.NewTodoForm__container {
+  padding: 20px;
+}
+
+.NewTodoForm__input {
+  padding: 13px;
+  box-sizing: border-box;
+}
+
+.NewTodoForm__input:focus {
+  outline: transparent;
+  -webkit-box-shadow: inset 0px 2px 1px 1px rgba(0,0,0,0.25);
+  box-shadow: inset 0px 2px 1px 1px rgba(0,0,0,0.25);
+  transition: 0.1s all linear;
+  border: none;
+}

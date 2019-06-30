@@ -100,44 +100,52 @@ export default class TodoList extends Component {
     } = this
 
     return (
-      <div class="TodoList__container">
-        <h1>Todo List!</h1>
-        <h3>A simple React Todo List app.</h3>
-        {todos.length > 0 && <hr />}
-        <ul className="TodoList__unordered-list">
-          {todos.map(todo => {
-            if (todo.editing) {
-              return (
-                <form key={todo.id}>
-                  <input
-                    value={todo.description}
-                    onChange={(event) => editTodoFormChangeHandler(todo.id, event)}
-                    name="description"
-                  />
-                  <button onClick={() => submitEdit(todo.id)}>Submit Edit</button>
-                </form>
-              )}
-            else {
-              return (
-              <li
-                key={todo.id}
-                onClick={() => crossTodoItem(todo.id)}
-                class="TodoList__item"
-              >
-                <div className="TodoList__item--description-container">
-                  <span class={`TodoList__item--description ${todo.crossedOff && "TodoList__item--crossed-off"}`}>{ todo.description }</span>
-                </div>
-                <button class="TodoList__item--button" onClick={() => setEditing(todo.id)}>Edit?</button>
-                <button onClick={() => deleteTodo(todo.id)}>X</button>
-              </li>
-              )
-            }
-          })}
-        </ul>
-        <hr />
-        <NewTodoForm
-          addTodo={addTodo}
-        />
+      <div className="flex-container">
+        <div class="TodoList__container">
+          <h1>Todo List</h1>
+          <h3>A simple React Todo List app.</h3>
+          <ul className="TodoList__unordered-list">
+            {todos.map(todo => {
+              if (todo.editing) {
+                return (
+                  <div className="TodoList__item">
+                    <div className="TodoList__item--description-container">
+                      <form className="TodoList__item--description" key={todo.id}>
+                        <input
+                          className="NewTodoForm__input"
+                          value={todo.description}
+                          onChange={(event) => editTodoFormChangeHandler(todo.id, event)}
+                          name="description"
+                        />
+                        <button onClick={() => submitEdit(todo.id)}>Submit Edit</button>
+                      </form>
+                    </div>
+                  </div>
+                )}
+              else {
+                return (
+                <li
+                  key={todo.id}
+                  onClick={() => crossTodoItem(todo.id)}
+                  className="TodoList__item"
+                >
+                  <div className="TodoList__item--description-container">
+                    <span className={`TodoList__item--description ${todo.crossedOff && "TodoList__item--crossed-off"}`}>{ todo.description }</span>
+                  </div>
+                  <div className="TodoList__button-container">
+                    <button class="TodoList__button TodoList__button--green" onClick={() => setEditing(todo.id)}>Edit?</button>
+                    <button class="TodoList__button TodoList__button--red" onClick={() => deleteTodo(todo.id)}>Delete</button>
+                  </div>
+                </li>
+                )
+              }
+            })}
+          </ul>
+          <hr />
+          <NewTodoForm
+            addTodo={addTodo}
+          />
+        </div>
       </div>
     )
   }
