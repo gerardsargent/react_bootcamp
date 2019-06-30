@@ -122,8 +122,11 @@ export default class TodoList extends Component {
               <li
                 key={todo.id}
                 onClick={() => crossTodoItem(todo.id)}
+                class="TodoList__item"
               >
-                <span class={`TodoList__item--description ${todo.crossedOff && "TodoList__item--crossed-off"}`}>{ todo.description }</span>
+                <div className="TodoList__item--description-container">
+                  <span class={`TodoList__item--description ${todo.crossedOff && "TodoList__item--crossed-off"}`}>{ todo.description }</span>
+                </div>
                 <button class="TodoList__item--button" onClick={() => setEditing(todo.id)}>Edit?</button>
                 <button onClick={() => deleteTodo(todo.id)}>X</button>
               </li>
