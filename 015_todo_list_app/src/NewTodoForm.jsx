@@ -46,13 +46,15 @@ export default class NewTodoForm extends Component {
 
     return (
       <div className="NewTodoForm__container" >
-        <h4>New Todo</h4>
+        <label htmlFor="new-todo">New Todo</label>
         <form className="NewTodoForm__container" onSubmit={handleSubmit}>
           <input
             className="NewTodoForm__input"
             onChange={event => handleNewTodoOnChange(event)}
             placeholder="New Todo"
             value={description}
+            type="text"
+            id="new-todo"
           />
           <button className="TodoList__button TodoList__button--info">Add</button>
         </form>
