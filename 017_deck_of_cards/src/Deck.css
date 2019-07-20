@@ -1,0 +1,24 @@
+.Deck__button {
+  background-color: rgb(34, 34, 34);
+  padding: 15px 25px;
+  color: rgb(255, 242, 221);
+  text-transform: uppercase;
+  border: none;
+}
+
+.Deck__container {
+  padding: 50px;
+}
+
+.Deck__card-container {
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.Deck__card-img {
+  width: 113px;
+  position: absolute;
+  top: 150px;
+}
