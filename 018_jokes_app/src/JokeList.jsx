@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './JokeList.css'
-import Joke from './Joke'
-import SmileyMainImg from './img/smiley_main.svg'
 import uuid from 'uuid/v4'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faLaugh
- } from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons'
 
+import './JokeList.css'
+import Joke from './Joke'
+import SmileyMainImg from './img/smiley_main.svg'
 export default class JokeList extends Component {
   static defaultProps = {
     numJokesToGet: 10
@@ -87,6 +87,7 @@ export default class JokeList extends Component {
 
     window.localStorage.setItem('savedJokes', JSON.stringify(sortedJokes))
   }
+
 
   render() {
     const { jokes, loading } = this.state

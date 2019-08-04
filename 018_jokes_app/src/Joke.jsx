@@ -1,10 +1,14 @@
 import React from 'react'
+import {useSpring, animated} from 'react-spring'
+
 import './Joke.css'
 
 export default function Joke ({ joke, vote }) {
   const handleClick = (jokeId, operation) => {
     vote(jokeId, operation)
   }
+
+  const animateProps = useSpring({opacity: 1, from: {opacity: 0}})
 
   const getEmoji = (score) => {
     if (score <= 0) {
@@ -35,7 +39,7 @@ export default function Joke ({ joke, vote }) {
   }
 
   return (
-    <div className='Joke'>
+    <animated.div style={animateProps} className='Joke'>
       <div className="Joke-Score__container">
         <button
           onClick={() => handleClick(joke.id, "add")}
@@ -64,6 +68,6 @@ export default function Joke ({ joke, vote }) {
         src={ getEmoji(joke.score) }
         alt="Joke Emoji"
       />
-    </div>
+    </animated.div>
   )
 }
