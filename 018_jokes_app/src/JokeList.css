@@ -22,13 +22,6 @@
 .JokeList-header__btn {
   border: 0;
   padding: 25px 50px;
-  /* background: linear-gradient(
-    135deg,
-    #B3E5FC 0%,
-    #B3E5FC 50%,
-    #F06392 50%,
-    #F06392 100%
-  ); */
   background: rgb(253, 236, 184);
   font-size: 1.25em;
   margin-top: 25px;
@@ -57,4 +50,5 @@
   padding: 50px;
   font-size: 3em;
   background-color: #fff;
+  color: #666
 }
