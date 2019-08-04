@@ -16,13 +16,13 @@ class App extends Component {
     return (
       <div className='App'>
         <nav className='App-nav'>
-          <NavLink activeClassName='active-link' to='/'>
+          <NavLink exact activeClassName='active-link' to='/'>
             About
           </NavLink>
-          <NavLink activeClassName='active-link' to='/contact'>
+          <NavLink exact activeClassName='active-link' to='/contact'>
             Contact
           </NavLink>
-          <NavLink activeClassName='active-link' to='/dog'>
+          <NavLink exact activeClassName='active-link' to='/dog'>
             Dog
           </NavLink>
 
