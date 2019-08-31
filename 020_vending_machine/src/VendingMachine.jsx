@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Border from './Border'
 
 export default class VendingMachine extends Component {
   constructor(props) {
@@ -10,9 +11,14 @@ export default class VendingMachine extends Component {
   }
   render() {
     return (
-      <div className="VendingMachine">
-        Inside Vending Machine
-      </div>
+      <Border>
+        <div
+          className="VendingMachine"
+          style={{display: 'flex', placeItems: 'center', justifyContent: 'center', height: '90vh'}}
+        >
+          Inside Vending Machine
+        </div>
+      </Border>
     )
   }
 }
