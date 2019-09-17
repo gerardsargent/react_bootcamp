@@ -1,0 +1,11 @@
+img {
+  max-width: 800px;
+}
+
+.App {
+  text-align: center;
+}
+
+.img-container {
+  padding: 10px;
+}
