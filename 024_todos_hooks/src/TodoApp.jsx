@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import _ from 'lodash'
+import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Grid from '@material-ui/core/Grid'
 
+import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import './Todo.css'
 
@@ -13,9 +13,17 @@ const TodoApp = () => {
   const initialTodos = [
     { id: 1, task: 'Clean Fishtank', completed: false },
     { id: 2, task: 'Wash Car', completed: true },
-    { id: 3, task: 'Grow Beard', completed: false }
+    { id: 3, task: 'Grow Beard', completed: false },
   ]
   const [todos, setTodos] = useState(initialTodos)
+
+  const addTodo = newTodoText => {
+    setTodos([...todos, {
+      id: 4,
+      task: newTodoText,
+      completed: false
+    }])
+  }
 
   return (
     <Paper style={{
@@ -33,6 +41,7 @@ const TodoApp = () => {
           <Typography color='inherit'>TODOS WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
+      <TodoForm addTodo={addTodo}/>
       <TodoList todos={todos} />
     </Paper>
   )
